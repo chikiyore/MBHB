@@ -61,7 +61,7 @@ public class Greedy {
         for (int i = 0; i < n; i++) {
             int unidad = unidades.remove(0); // Tomamos la unidad con mayor flujo
             int localizacion = localizaciones.remove(0); // Tomamos la localización con menor distancia
-            solucion[unidad] = localizacion; // Asignamos
+            solucion[localizacion] = unidad; // Asignamos en la posicion Localizacion el valor Unidad
         }
     }
 
@@ -69,7 +69,7 @@ public class Greedy {
         int coste = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                coste += F[i][j] * D[solucion[i]][solucion[j]];
+                coste += D[i][j] * F[solucion[i]][solucion[j]];
             }
         }
         return coste;
