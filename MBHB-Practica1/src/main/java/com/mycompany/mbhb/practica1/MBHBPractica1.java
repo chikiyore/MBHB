@@ -7,7 +7,9 @@ package com.mycompany.mbhb.practica1;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.security.AlgorithmConstraints;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -17,6 +19,7 @@ import java.util.Scanner;
 public class MBHBPractica1 {
 
     public static void main(String[] args) {
+        long[] Semillas={123456789,234567891,345678912,456789123,567891234};
     Scanner lectorOpcion = new Scanner(System.in);
 
         // Preguntar el nombre del fichero
@@ -59,11 +62,12 @@ public class MBHBPractica1 {
                 // Menú interactivo
                 System.out.println("\nSeleccione el algoritmo a aplicar:");
                 System.out.println("1. Algoritmo Greedy");
-                System.out.println("2. Búsqueda Aleatoria (por implementar)");
-                System.out.println("3. Búsqueda Local (por implementar)");
-                System.out.println("4. Enfriamiento Simulado (por implementar)");
-                System.out.println("5. Búsqueda Tabú(por implementar)");                
-                System.out.println("6. Salir");
+                System.out.println("2. Búsqueda Aleatoria");
+                System.out.println("3. Búsqueda Local el Mejor");
+                System.out.println("4. Búsqueda Local Primer Mejor");
+                System.out.println("5. Enfriamiento Simulado (por implementar)");
+                System.out.println("6. Búsqueda Tabú(por implementar)");                
+                System.out.println("7. Salir");
                 
                 while (!lectorOpcion.hasNextInt()) {
                     System.out.println("Por favor, ingrese un número válido.");
@@ -80,24 +84,74 @@ public class MBHBPractica1 {
                         algoritmoGreedy.mostrarSolucion();
                         break;
                     case 2:
-                        System.out.println("Búsqueda Aleatoria aún no implementado.");
+                        System.out.println("Ejecutando Búsqueda Aleatoria\n");
+                        
+                      int[][] SolucionesBa=new int[5][n];
+                      int[] CostosBa=new int[5];
+                      
+                       for(int i=0;i<5;i++){
+                        BusquedaAleatoria ba=new BusquedaAleatoria(D, F, n, Semillas[i]);
+                       SolucionesBa[i] = ba.resolverBusquedaAleatoria();
+                       CostosBa[i]=ba.devolverCosto();                       
+                       }
+                       
+                       System.out.println("Todas las soluciones:");
+        for (int i=0;i<5 ; i++) {
+            System.out.println(Arrays.toString(SolucionesBa[i]));
+            System.out.println("Costo "+ (i+1) +" = "+ CostosBa[i] );
+        }
+                        
                         break;
                     case 3:
-                        System.out.println("Búsqueda Local aún no implementado.");
+                        System.out.println("Búsqueda Local el mejor\n");
+                        
+                      int[][] SolucionesBLM=new int[5][n];
+                      int[] CostosBLM=new int[5];
+                      
+                       for(int i=0;i<5;i++){
+                        BusquedaLocalMejor blm=new BusquedaLocalMejor(D, F, n, Semillas[i]);
+                       SolucionesBLM[i] = blm.resolverBusquedaLocalMejor();
+                       CostosBLM[i]=blm.devolverCosto();                       
+                       }
+                       
+                       System.out.println("Todas las soluciones:");
+        for (int i=0;i<5 ; i++) {
+            System.out.println(Arrays.toString(SolucionesBLM[i]));
+            System.out.println("Costo "+ (i+1) +" = "+ CostosBLM[i] );
+        }
                         break;
                     case 4:
-                        System.out.println("Enfriamiento Simulado aún no implementado.");
+                        System.out.println("Búsqueda Local Primer Mejor\n");
+                        
+                        
+                      int[][] SolucionesBLPM=new int[5][n];
+                      int[] CostosBLPM=new int[5];
+                      
+                       for(int i=0;i<5;i++){
+                       BusquedaLocalPrimerMejor blpm=new BusquedaLocalPrimerMejor(D, F, n,Semillas[i]);
+                       SolucionesBLPM[i] = blpm.resolverBusquedaLocalPrimerMejor();
+                       CostosBLPM[i]=blpm.devolverCosto();
+                       }
+                       
+                       System.out.println("Todas las soluciones:");
+        for (int i=0;i<5 ; i++) {
+            System.out.println(Arrays.toString(SolucionesBLPM[i]));
+            System.out.println("Costo "+ (i+1) +" = "+ CostosBLPM[i] );
+        }
                         break;
                     case 5:
-                        System.out.println("Búsqueda Tabú aún no implementado.");
+                        System.out.println("Enfriamiento Simulado aún no implementado.");
                         break;
                     case 6:
+                        System.out.println("Búsqueda Tabú aún no implementado.");
+                        break;
+                    case 7:
                         System.out.println("Saliendo del programa...");
                         break;
                     default:
                         System.out.println("Opción no válida, intente de nuevo.");
                 }
-            } while (opcion != 6);
+            } while (opcion != 7);
 
         } catch (FileNotFoundException e) {
             System.out.println("No se encontró el fichero.");
