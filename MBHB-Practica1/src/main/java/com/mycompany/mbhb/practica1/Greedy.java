@@ -39,15 +39,15 @@ public class Greedy {
                 potencialDistancia[i] += D[i][j];
             }
         }
-       System.out.println("Flujo Potencial: " + Arrays.toString(potencialFlujo));
-       System.out.println("Distancia Potencial: " + Arrays.toString(potencialDistancia));
+       //System.out.println("Flujo Potencial: " + Arrays.toString(potencialFlujo));
+       //System.out.println("Distancia Potencial: " + Arrays.toString(potencialDistancia));
         // Ordenar unidades por flujo descendente
         List<Integer> unidades = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             unidades.add(i);
         }
         unidades.sort((u1, u2) -> Integer.compare(potencialFlujo[u2], potencialFlujo[u1]));
-        System.out.println("UNIDADES: " + unidades.toString());
+        //System.out.println("UNIDADES: " + unidades.toString());
 
         // Ordenar localizaciones por distancia ascendente
         List<Integer> localizaciones = new ArrayList<>();
@@ -56,7 +56,7 @@ public class Greedy {
         }
         localizaciones.sort(Comparator.comparingInt(l -> potencialDistancia[l]));
 
-        System.out.println("LOCALIZACIONES: " + localizaciones.toString());
+        //System.out.println("LOCALIZACIONES: " + localizaciones.toString());
         // Asignar cada unidad con mayor flujo a la mejor localización libre
         for (int i = 0; i < n; i++) {
             int unidad = unidades.remove(0); // Tomamos la unidad con mayor flujo
