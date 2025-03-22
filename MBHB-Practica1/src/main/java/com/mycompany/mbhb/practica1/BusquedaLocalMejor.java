@@ -21,6 +21,7 @@ public class BusquedaLocalMejor {
     private int[] mejorSolucion;
     private int mejorCosto;
     private Random random;
+    private int evaluaciones;
 
     public BusquedaLocalMejor(int[][] D, int[][] F, int n, long seed) {
         this.F = F;
@@ -29,6 +30,7 @@ public class BusquedaLocalMejor {
         this.random = new Random(seed);
         this.mejorSolucion = generarSolucionAleatoria();
         this.mejorCosto = calcularCosto(mejorSolucion);
+        this.evaluaciones=0;
     }
 
     public int[] resolverBusquedaLocalMejor() {
@@ -89,10 +91,14 @@ public class BusquedaLocalMejor {
                 coste += D[i][j] * F[solucion[i]][solucion[j]];
             }
         }
+        evaluaciones++;
         return coste;
     }
 
     public int devolverCosto() {
         return mejorCosto;
+    }
+    public int devolverEvaluaciones() {
+        return evaluaciones;
     }
 }

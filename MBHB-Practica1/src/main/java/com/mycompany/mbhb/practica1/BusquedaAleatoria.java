@@ -14,6 +14,7 @@ public class BusquedaAleatoria {
     private int[] mejorSolucion; // Mejor solución encontrada
     private int mejorCosto; // Coste de la mejor solución
     private Random random;
+    private int evaluaciones;
 
     public BusquedaAleatoria(int[][] D, int[][] F, int n, long semilla) {
         this.F = F;
@@ -22,6 +23,7 @@ public class BusquedaAleatoria {
         this.random = new Random(semilla);
         this.mejorSolucion = new int[n];
         this.mejorCosto = Integer.MAX_VALUE;
+        this.evaluaciones=0;
     }
 
     public int[] resolverBusquedaAleatoria() {
@@ -62,11 +64,15 @@ public class BusquedaAleatoria {
                 coste += D[i][j] * F[solucion[i]][solucion[j]];
             }
         }
+        evaluaciones++;
         return coste;
     }
 
     public int devolverCosto() {
         return mejorCosto;
+    }
+    public int devolverEvaluaciones() {
+        return evaluaciones;
     }
 
 }

@@ -17,6 +17,7 @@ public class Greedy {
     private int[][] F; // Matriz de flujos
     private int[][] D; // Matriz de distancias
     private int[] solucion; // Solución encontrada
+    private int evaluaciones;
 
     public Greedy(int[][] D, int[][] F, int n) {
         //readFile(filePath);
@@ -24,6 +25,7 @@ public class Greedy {
         this.D = D;
         this.n = n;
         solucion = new int[n];
+        this.evaluaciones=0;
     }
 
     public void resolverGreedy() {
@@ -72,6 +74,7 @@ public class Greedy {
                 coste += D[i][j] * F[solucion[i]][solucion[j]];
             }
         }
+        evaluaciones++;
         return coste;
     }
 
@@ -79,6 +82,11 @@ public class Greedy {
         System.out.println("Solución Greedy:");
         System.out.println(Arrays.toString(solucion));
         System.out.println("Coste de la solución: " + funcionObjetivo());
+        System.out.println("Numero de evaluaciones: " + devolverEvaluaciones());
+    }
+    
+    public int devolverEvaluaciones() {
+        return evaluaciones;
     }
 
 }

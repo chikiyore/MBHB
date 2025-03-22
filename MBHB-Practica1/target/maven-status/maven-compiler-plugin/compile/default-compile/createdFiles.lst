@@ -1,6 +1,8 @@
-com\mycompany\mbhb\practica1\BusquedaLocalPrimerMejor.class
+com\mycompany\mbhb\practica1\BusquedaTabu$ElementoTabu.class
 com\mycompany\mbhb\practica1\BusquedaLocalMejor.class
 com\mycompany\mbhb\practica1\Greedy.class
+com\mycompany\mbhb\practica1\BusquedaLocalPrimerMejor.class
 com\mycompany\mbhb\practica1\MBHBPractica1.class
 com\mycompany\mbhb\practica1\BusquedaAleatoria.class
+com\mycompany\mbhb\practica1\BusquedaTabu.class
 com\mycompany\mbhb\practica1\EnfriamientoSimulado.class
