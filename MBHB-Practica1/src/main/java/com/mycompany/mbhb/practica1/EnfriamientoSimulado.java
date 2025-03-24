@@ -24,6 +24,7 @@ public class EnfriamientoSimulado {
     private Random random;
     private double TIni;
     private int evaluaciones;
+    private int vi,vj;
 
     public EnfriamientoSimulado(int[][] D, int[][] F, int n, long seed) {
         this.F = F;
@@ -47,7 +48,7 @@ public class EnfriamientoSimulado {
             int aceptados = 0;
             for (int i = 0; i < 40 && aceptados < 5; i++) { // Máximo 40 intentos por temperatura o 5 aceptados
                 int[] vecino = generarVecino(solucionActual);
-                int costoVecino = calcularCosto(vecino);
+                int costoVecino =costoActual + calcularDiferenciaCosto(solucionActual, vi, vj);
                 int delta = costoVecino - costoActual;
                 
                 if (delta < 0 || random.nextDouble() < Math.exp(-delta / T)) {
@@ -65,7 +66,19 @@ public class EnfriamientoSimulado {
         }
         return mejorSolucion;
     }
-
+private int calcularDiferenciaCosto(int[] solucion, int i, int j) {
+        int delta = 0;
+        for (int k = 0; k < n; k++) {
+            if (k != i && k != j) {
+                delta += (D[i][k] * (F[solucion[j]][solucion[k]] - F[solucion[i]][solucion[k]]))
+                        + (D[j][k] * (F[solucion[i]][solucion[k]] - F[solucion[j]][solucion[k]]))
+                        + (D[k][i] * (F[solucion[k]][solucion[j]] - F[solucion[k]][solucion[i]]))
+                        + (D[k][j] * (F[solucion[k]][solucion[i]] - F[solucion[k]][solucion[j]]));
+            }
+        }
+        evaluaciones++;
+        return delta;
+    }
     private int[] generarSolucionAleatoria() {
         List<Integer> permutacion = new ArrayList<>();
         for (int i = 0; i < n; i++) {
@@ -85,7 +98,8 @@ public class EnfriamientoSimulado {
         int i = random.nextInt(n);
         int j = random.nextInt(n);
         while (i == j) j = random.nextInt(n);
-        
+        vi=i;
+        vj=j;
         int temp = vecino[i];
         vecino[i] = vecino[j];
         vecino[j] = temp;

@@ -103,8 +103,8 @@ public class MBHBPractica1 {
                 System.out.println("2. Búsqueda Aleatoria");
                 System.out.println("3. Búsqueda Local el Mejor");
                 System.out.println("4. Búsqueda Local Primer Mejor");
-                System.out.println("5. Enfriamiento Simulado (por implementar)");
-                System.out.println("6. Búsqueda Tabú(por implementar)");
+                System.out.println("5. Enfriamiento Simulado");
+                System.out.println("6. Búsqueda Tabú");
                 System.out.println("7. Salir");
 
                 while (!lectorOpcion.hasNextInt()) {
@@ -316,7 +316,7 @@ public class MBHBPractica1 {
 
                         break;
                     case 6:
-                        System.out.println("Búsqueda Tabú aún no implementado.");
+                        System.out.println("Búsqueda Tabú\n");
                         int[][] SolucionesBT1 = new int[5][n1];
                         int[] CostosBT1 = new int[5];
                         int[] EvaluacionesBT1 = new int[5];
