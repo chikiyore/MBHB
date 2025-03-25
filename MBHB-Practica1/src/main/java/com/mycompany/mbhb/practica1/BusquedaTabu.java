@@ -57,7 +57,7 @@ public class BusquedaTabu {
                 int[] vecino = generarVecino(solucionActual, i, j);
                 int nuevoCosto = costoActual + calcularDiferenciaCosto(solucionActual, i, j);
 
-                if (!esTabu(new ElementoTabu(solucionActual[i], solucionActual[j], i, j, 0)) || nuevoCosto < mejorCosto) {
+                if (!esTabu(new ElementoTabu(solucionActual[i], solucionActual[j], j, i, 0)) || nuevoCosto < mejorCosto) {
                     if (nuevoCosto < mejorCostoVecino) {
                         mejorVecino = vecino.clone();
                         mejorCostoVecino = nuevoCosto;
@@ -71,7 +71,7 @@ public class BusquedaTabu {
                 solucionActual = mejorVecino.clone();
                 costoActual = mejorCostoVecino;
                 actualizarMemoriaFrecuencia(solucionActual);
-                agregarElementoTabu(new ElementoTabu(solucionActual[mejorI], solucionActual[mejorJ], mejorI, mejorJ, iteracion + (n / 2)));
+                agregarElementoTabu(new ElementoTabu(solucionActual[mejorI], solucionActual[mejorJ], mejorJ, mejorI, iteracion + (n / 2)));
                 eliminarMovimientosTabuExpirados(iteracion);
                 if (costoActual < mejorCosto) {
                     mejorCosto = costoActual;

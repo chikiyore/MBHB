@@ -15,6 +15,7 @@ import java.util.Random;
  * @author jarro
  */
 public class BusquedaLocalPrimerMejor {
+
     private int n;
     private int[][] F; // Matriz de flujos
     private int[][] D; // Matriz de distancias
@@ -30,30 +31,33 @@ public class BusquedaLocalPrimerMejor {
         this.random = new Random(seed);
         this.mejorSolucion = generarSolucionInicial();
         this.mejorCosto = calcularCosto(mejorSolucion);
-        this.evaluaciones=0;
-        
+        this.evaluaciones = 0;
+
     }
 
     public int[] resolverBusquedaLocalPrimerMejor() {
         boolean mejora = true;
 
         while (mejora) {
+            int it = 0;
             mejora = false;
             int[] mejorVecino = mejorSolucion.clone();
             int mejorCostoVecino = mejorCosto;
+            List<int[]> candidatos = generarListaVecinos();
 
-            // Exploramos los vecinos en orden secuencial
-            for (int i = 0; i < n - 1 && !mejora; i++) {
-                for (int j = i + 1; j < n && !mejora; j++) {
-                    int[] vecino = generarVecino(mejorSolucion, i, j);
-                    int costoVecino = calcularCosto(vecino);
+            // Exploramos aleatoriamente
+            while (it < candidatos.size() && !mejora) {
+                int i = candidatos.get(it)[0], j = candidatos.get(it)[1];
+                int[] vecino = generarVecino(mejorSolucion, i, j);
+                int costoVecino = mejorCosto + calcularDiferenciaCosto(mejorSolucion, i, j);
 
-                    if (costoVecino < mejorCostoVecino) {
-                        mejorVecino = vecino.clone();
-                        mejorCostoVecino = costoVecino;
-                        mejora = true; // Se detiene naturalmente en la siguiente iteración
-                    }
+                if (costoVecino < mejorCostoVecino) {
+                    mejorVecino = vecino.clone();
+                    mejorCostoVecino = costoVecino;
+                    mejora = true; // Se detiene naturalmente en la siguiente iteración
+                    break;
                 }
+                it++;
             }
 
             // Si encontramos una mejora, actualizamos la solución
@@ -63,6 +67,31 @@ public class BusquedaLocalPrimerMejor {
             }
         }
         return mejorSolucion;
+    }
+
+    private List<int[]> generarListaVecinos() {
+        List<int[]> candidatos = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                candidatos.add(new int[]{i, j});
+            }
+        }
+        Collections.shuffle(candidatos, random);
+        return candidatos;
+    }
+
+    private int calcularDiferenciaCosto(int[] solucion, int i, int j) {
+        int delta = 0;
+        for (int k = 0; k < n; k++) {
+            if (k != i && k != j) {
+                delta += (D[i][k] * (F[solucion[j]][solucion[k]] - F[solucion[i]][solucion[k]]))
+                        + (D[j][k] * (F[solucion[i]][solucion[k]] - F[solucion[j]][solucion[k]]))
+                        + (D[k][i] * (F[solucion[k]][solucion[j]] - F[solucion[k]][solucion[i]]))
+                        + (D[k][j] * (F[solucion[k]][solucion[i]] - F[solucion[k]][solucion[j]]));
+            }
+        }
+        evaluaciones++;
+        return delta;
     }
 
     private int[] generarSolucionInicial() {
@@ -101,6 +130,7 @@ public class BusquedaLocalPrimerMejor {
     public int devolverCosto() {
         return mejorCosto;
     }
+
     public int devolverEvaluaciones() {
         return evaluaciones;
     }

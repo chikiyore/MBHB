@@ -44,7 +44,7 @@ public class BusquedaLocalMejor {
             for (int i = 0; i < n; i++) {
                 for (int j = i + 1; j < n; j++) {
                     int[] vecino = generarVecino(mejorSolucion, i, j);
-                    int costoVecino = calcularCosto(vecino);
+                    int costoVecino = mejorCosto + calcularDiferenciaCosto(mejorSolucion, i, j);
 
                     if (costoVecino < mejorCostoVecino) {
                         mejorVecino = vecino.clone();
@@ -60,6 +60,19 @@ public class BusquedaLocalMejor {
             }
         }
         return mejorSolucion;
+    }
+    private int calcularDiferenciaCosto(int[] solucion, int i, int j) {
+        int delta = 0;
+        for (int k = 0; k < n; k++) {
+            if (k != i && k != j) {
+                delta += (D[i][k] * (F[solucion[j]][solucion[k]] - F[solucion[i]][solucion[k]]))
+                        + (D[j][k] * (F[solucion[i]][solucion[k]] - F[solucion[j]][solucion[k]]))
+                        + (D[k][i] * (F[solucion[k]][solucion[j]] - F[solucion[k]][solucion[i]]))
+                        + (D[k][j] * (F[solucion[k]][solucion[i]] - F[solucion[k]][solucion[j]]));
+            }
+        }
+        evaluaciones++;
+        return delta;
     }
 
     private int[] generarSolucionAleatoria() {
