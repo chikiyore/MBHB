@@ -18,6 +18,7 @@ public class Greedy {
     private int[][] D; // Matriz de distancias
     private int[] solucion; // Solución encontrada
     private int evaluaciones;
+    
 
     public Greedy(int[][] D, int[][] F, int n) {
         //readFile(filePath);
@@ -26,9 +27,10 @@ public class Greedy {
         this.n = n;
         solucion = new int[n];
         this.evaluaciones=0;
+        
     }
 
-    public void resolverGreedy() {
+    public int[] resolverGreedy() {
         // Calcular el potencial de flujo y de distancia
         int[] potencialFlujo = new int[n];
         int[] potencialDistancia = new int[n];
@@ -65,6 +67,7 @@ public class Greedy {
             int localizacion = localizaciones.remove(0); // Tomamos la localización con menor distancia
             solucion[localizacion] = unidad; // Asignamos en la posicion Localizacion el valor Unidad
         }
+        return solucion;
     }
 
     public int funcionObjetivo() {
@@ -87,6 +90,9 @@ public class Greedy {
     
     public int devolverEvaluaciones() {
         return evaluaciones;
+    }
+    public int devolverCosto() {
+        return funcionObjetivo();
     }
 
 }

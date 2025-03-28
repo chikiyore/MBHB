@@ -20,6 +20,7 @@ public class MBHBPractica1 {
         long[] Semillas = {123456789, 234567891, 345678912, 456789123, 567891234};
         Scanner lectorOpcion = new Scanner(System.in);
 
+        
         // Preguntar el nombre del fichero
         //System.out.print("Ingrese el nombre del fichero (ejemplo: prueba.dat): ");
         //String filePath = lectorOpcion.nextLine();
@@ -117,18 +118,43 @@ public class MBHBPractica1 {
                 switch (opcion) {
                     case 1:
                         System.out.println("Ejecutando Algoritmo Greedy\n");
+                        int[] SolucionesG1 = new int[n1];
+                        int CostosG1;
+                        int EvaluacionesG1;
+                        int[] SolucionesG2 = new int[n2];
+                        int CostosG2;
+                        int EvaluacionesG2;
+                        int[] SolucionesG3 = new int[n3];
+                        int CostosG3;
+                        int EvaluacionesG3;
                         Greedy algoritmoGreedy1 = new Greedy(D1, F1, n1);
-                        algoritmoGreedy1.resolverGreedy();
-                        algoritmoGreedy1.mostrarSolucion();
+                        SolucionesG1=algoritmoGreedy1.resolverGreedy();
+                        CostosG1=algoritmoGreedy1.devolverCosto();
+                        EvaluacionesG1=algoritmoGreedy1.devolverEvaluaciones();
+                         System.out.println("tai25b");
+                         System.out.println("Costo " + CostosG1);
+                         System.out.println("Evaluaciones " +  EvaluacionesG1+"\n");
                         
 
                         Greedy algoritmoGreedy2 = new Greedy(D2, F2, n2);
-                        algoritmoGreedy2.resolverGreedy();
-                        algoritmoGreedy2.mostrarSolucion();
+                        SolucionesG2=algoritmoGreedy2.resolverGreedy();
+                        CostosG2=algoritmoGreedy2.devolverCosto();
+                        EvaluacionesG2=algoritmoGreedy2.devolverEvaluaciones();
+                        System.out.println("sko90");
+                         System.out.println("Costo " + CostosG2);
+                         System.out.println("Evaluaciones " +  EvaluacionesG2+"\n");
+                        
 
                         Greedy algoritmoGreedy3 = new Greedy(D3, F3, n3);
-                        algoritmoGreedy3.resolverGreedy();
-                        algoritmoGreedy3.mostrarSolucion();
+                        SolucionesG3=algoritmoGreedy3.resolverGreedy();
+                        CostosG3=algoritmoGreedy3.devolverCosto();
+                        EvaluacionesG3=algoritmoGreedy3.devolverEvaluaciones();
+                        System.out.println("tai150b");
+                         System.out.println("Costo " + CostosG3);
+                         System.out.println("Evaluaciones " +  EvaluacionesG3+"\n");
+                        
+                        
+                        
                         break;
                     case 2:
                         System.out.println("Ejecutando Búsqueda Aleatoria\n");
@@ -162,21 +188,44 @@ public class MBHBPractica1 {
                         }
 
                         System.out.println("Todas las soluciones:");
+                        System.out.println("tai25b");
                         for (int i = 0; i < 5; i++) {
                             System.out.println(Arrays.toString(SolucionesBa1[i]));
                             System.out.println("Costo " + (i + 1) + " = " + CostosBa1[i]);
                             System.out.println("Evaluaciones " + (i + 1) + " = " + EvaluacionesBa1[i]);
                         }
+                        System.out.println("El mejor coste es: "+ Arrays.stream(CostosBa1).min().getAsInt());
+                        System.out.println("El peor coste es: "+ Arrays.stream(CostosBa1).max().getAsInt());
+                        System.out.println("Media de coste: " + calcularMedia(CostosBa1));
+                        System.out.println("Desviación tipica de coste: "+ calcularDesviacion(CostosBa1, calcularMedia(CostosBa1)) );
+                        System.out.println("Media de evaluaciones: " + calcularMedia(EvaluacionesBa1) );
+                        System.out.println("Desviación tipica de evaluaciones: " +calcularDesviacion(EvaluacionesBa1, calcularMedia(EvaluacionesBa1))+"\n");
+                        
+                        System.out.println("sko90");
                         for (int i = 0; i < 5; i++) {
                             System.out.println(Arrays.toString(SolucionesBa2[i]));
                             System.out.println("Costo " + (i + 1) + " = " + CostosBa2[i]);
                             System.out.println("Evaluaciones " + (i + 1) + " = " + EvaluacionesBa2[i]);
                         }
+                        System.out.println("El mejor coste es: "+ Arrays.stream(CostosBa2).min().getAsInt());
+                        System.out.println("El peor coste es: "+ Arrays.stream(CostosBa2).max().getAsInt());
+                        System.out.println("Media de coste: " + calcularMedia(CostosBa2));
+                        System.out.println("Desviación tipica de coste: "+ calcularDesviacion(CostosBa2, calcularMedia(CostosBa2)) );
+                        System.out.println("Media de evaluaciones: " + calcularMedia(EvaluacionesBa2) );
+                        System.out.println("Desviación tipica de evaluaciones: " +calcularDesviacion(EvaluacionesBa2, calcularMedia(EvaluacionesBa2))+"\n");
+                        
+                        System.out.println("tai150b");
                         for (int i = 0; i < 5; i++) {
                             System.out.println(Arrays.toString(SolucionesBa3[i]));
                             System.out.println("Costo " + (i + 1) + " = " + CostosBa3[i]);
                             System.out.println("Evaluaciones " + (i + 1) + " = " + EvaluacionesBa3[i]);
                         }
+                        System.out.println("El mejor coste es: "+ Arrays.stream(CostosBa3).min().getAsInt());
+                        System.out.println("El peor coste es: "+ Arrays.stream(CostosBa3).max().getAsInt());
+                        System.out.println("Media de coste: " + calcularMedia(CostosBa3));
+                        System.out.println("Desviación tipica de coste: "+ calcularDesviacion(CostosBa3, calcularMedia(CostosBa3)) );
+                        System.out.println("Media de evaluaciones: " + calcularMedia(EvaluacionesBa3) );
+                        System.out.println("Desviación tipica de evaluaciones: " +calcularDesviacion(EvaluacionesBa3, calcularMedia(EvaluacionesBa3))+"\n");
 
                         break;
                     case 3:
@@ -208,21 +257,44 @@ public class MBHBPractica1 {
                         }
 
                         System.out.println("Todas las soluciones:");
+                        System.out.println("tai25b");
                         for (int i = 0; i < 5; i++) {
                             System.out.println(Arrays.toString(SolucionesBLM1[i]));
                             System.out.println("Costo " + (i + 1) + " = " + CostosBLM1[i]);
                             System.out.println("Evaluaciones " + (i + 1) + " = " + EvaluacionesBLM1[i]);
                         }
+                        System.out.println("El mejor coste es: "+ Arrays.stream(CostosBLM1).min().getAsInt());
+                        System.out.println("El peor coste es: "+ Arrays.stream(CostosBLM1).max().getAsInt());
+                        System.out.println("Media de coste: " + calcularMedia(CostosBLM1));
+                        System.out.println("Desviación tipica de coste: "+ calcularDesviacion(CostosBLM1, calcularMedia(CostosBLM1)) );
+                        System.out.println("Media de evaluaciones: " + calcularMedia(EvaluacionesBLM1) );
+                        System.out.println("Desviación tipica de evaluaciones: " +calcularDesviacion(EvaluacionesBLM1, calcularMedia(EvaluacionesBLM1))+"\n");
+                        
+                        System.out.println("sko90");
                         for (int i = 0; i < 5; i++) {
                             System.out.println(Arrays.toString(SolucionesBLM2[i]));
                             System.out.println("Costo " + (i + 1) + " = " + CostosBLM2[i]);
                              System.out.println("Evaluaciones " + (i + 1) + " = " + EvaluacionesBLM2[i]);
                         }
+                        System.out.println("El mejor coste es: "+ Arrays.stream(CostosBLM2).min().getAsInt());
+                        System.out.println("El peor coste es: "+ Arrays.stream(CostosBLM2).max().getAsInt());
+                        System.out.println("Media de coste: " + calcularMedia(CostosBLM2));
+                        System.out.println("Desviación tipica de coste: "+ calcularDesviacion(CostosBLM2, calcularMedia(CostosBLM2)) );
+                        System.out.println("Media de evaluaciones: " + calcularMedia(EvaluacionesBLM2) );
+                        System.out.println("Desviación tipica de evaluaciones: " +calcularDesviacion(EvaluacionesBLM2, calcularMedia(EvaluacionesBLM2))+"\n");
+                        
+                        System.out.println("tai150b");
                         for (int i = 0; i < 5; i++) {
                             System.out.println(Arrays.toString(SolucionesBLM3[i]));
                             System.out.println("Costo " + (i + 1) + " = " + CostosBLM3[i]);
                              System.out.println("Evaluaciones " + (i + 1) + " = " + EvaluacionesBLM3[i]);
                         }
+                        System.out.println("El mejor coste es: "+ Arrays.stream(CostosBLM3).min().getAsInt());
+                        System.out.println("El peor coste es: "+ Arrays.stream(CostosBLM3).max().getAsInt());
+                        System.out.println("Media de coste: " + calcularMedia(CostosBLM3));
+                        System.out.println("Desviación tipica de coste: "+ calcularDesviacion(CostosBLM3, calcularMedia(CostosBLM3)) );
+                        System.out.println("Media de evaluaciones: " + calcularMedia(EvaluacionesBLM3) );
+                        System.out.println("Desviación tipica de evaluaciones: " +calcularDesviacion(EvaluacionesBLM3, calcularMedia(EvaluacionesBLM3))+"\n");
                         break;
                     case 4:
                         System.out.println("Búsqueda Local Primer Mejor\n");
@@ -253,21 +325,44 @@ public class MBHBPractica1 {
                         }
 
                         System.out.println("Todas las soluciones:");
+                        System.out.println("tai25b");
                         for (int i = 0; i < 5; i++) {
                             System.out.println(Arrays.toString(SolucionesBLPM1[i]));
                             System.out.println("Costo " + (i + 1) + " = " + CostosBLPM1[i]);
                              System.out.println("Evaluaciones " + (i + 1) + " = " + EvaluacionesBLPM1[i]);
                         }
+                        System.out.println("El mejor coste es: "+ Arrays.stream(CostosBLPM1).min().getAsInt());
+                        System.out.println("El peor coste es: "+ Arrays.stream(CostosBLPM1).max().getAsInt());
+                        System.out.println("Media de coste: " + calcularMedia(CostosBLPM1));
+                        System.out.println("Desviación tipica de coste: "+ calcularDesviacion(CostosBLPM1, calcularMedia(CostosBLPM1)) );
+                        System.out.println("Media de evaluaciones: " + calcularMedia(EvaluacionesBLPM1) );
+                        System.out.println("Desviación tipica de evaluaciones: " +calcularDesviacion(EvaluacionesBLPM1, calcularMedia(EvaluacionesBLPM1))+"\n");
+                        
+                        System.out.println("sko90");
                         for (int i = 0; i < 5; i++) {
                             System.out.println(Arrays.toString(SolucionesBLPM2[i]));
                             System.out.println("Costo " + (i + 1) + " = " + CostosBLPM2[i]);
                             System.out.println("Evaluaciones " + (i + 1) + " = " + EvaluacionesBLPM2[i]);
                         }
+                        System.out.println("El mejor coste es: "+ Arrays.stream(CostosBLPM2).min().getAsInt());
+                        System.out.println("El peor coste es: "+ Arrays.stream(CostosBLPM2).max().getAsInt());
+                        System.out.println("Media de coste: " + calcularMedia(CostosBLPM2));
+                        System.out.println("Desviación tipica de coste: "+ calcularDesviacion(CostosBLPM2, calcularMedia(CostosBLPM2)) );
+                        System.out.println("Media de evaluaciones: " + calcularMedia(EvaluacionesBLPM2) );
+                        System.out.println("Desviación tipica de evaluaciones: " +calcularDesviacion(EvaluacionesBLPM2, calcularMedia(EvaluacionesBLPM2))+"\n");
+                        
+                        System.out.println("tai150b");
                         for (int i = 0; i < 5; i++) {
                             System.out.println(Arrays.toString(SolucionesBLPM3[i]));
                             System.out.println("Costo " + (i + 1) + " = " + CostosBLPM3[i]);
                             System.out.println("Evaluaciones " + (i + 1) + " = " + EvaluacionesBLPM3[i]);
                         }
+                        System.out.println("El mejor coste es: "+ Arrays.stream(CostosBLPM3).min().getAsInt());
+                        System.out.println("El peor coste es: "+ Arrays.stream(CostosBLPM3).max().getAsInt());
+                        System.out.println("Media de coste: " + calcularMedia(CostosBLPM3));
+                        System.out.println("Desviación tipica de coste: "+ calcularDesviacion(CostosBLPM3, calcularMedia(CostosBLPM3)) );
+                        System.out.println("Media de evaluaciones: " + calcularMedia(EvaluacionesBLPM3) );
+                        System.out.println("Desviación tipica de evaluaciones: " +calcularDesviacion(EvaluacionesBLPM3, calcularMedia(EvaluacionesBLPM3))+"\n");
                         break;
                     case 5:
                         System.out.println("Enfriamiento Simulado\n");
@@ -298,21 +393,44 @@ public class MBHBPractica1 {
 
                         }
                         System.out.println("Todas las soluciones:");
+                        System.out.println("tai25b");
                         for (int i = 0; i < 5; i++) {
                             System.out.println(Arrays.toString(SolucionesES1[i]));
                             System.out.println("Costo " + (i + 1) + " = " + CostosES1[i]);
                             System.out.println("Evaluaciones " + (i + 1) + " = " + EvaluacionesES1[i]);
                         }
+                        System.out.println("El mejor coste es: "+ Arrays.stream(CostosES1).min().getAsInt());
+                        System.out.println("El peor coste es: "+ Arrays.stream(CostosES1).max().getAsInt());
+                        System.out.println("Media de coste: " + calcularMedia(CostosES1));
+                        System.out.println("Desviación tipica de coste: "+ calcularDesviacion(CostosES1, calcularMedia(CostosES1)) );
+                        System.out.println("Media de evaluaciones: " + calcularMedia(EvaluacionesES1) );
+                        System.out.println("Desviación tipica de evaluaciones: " +calcularDesviacion(EvaluacionesES1, calcularMedia(EvaluacionesES1))+"\n");
+                        
+                        System.out.println("sko90");
                         for (int i = 0; i < 5; i++) {
                             System.out.println(Arrays.toString(SolucionesES2[i]));
                             System.out.println("Costo " + (i + 1) + " = " + CostosES2[i]);
                             System.out.println("Evaluaciones " + (i + 1) + " = " + EvaluacionesES2[i]);
                         }
+                        System.out.println("El mejor coste es: "+ Arrays.stream(CostosES2).min().getAsInt());
+                        System.out.println("El peor coste es: "+ Arrays.stream(CostosES2).max().getAsInt());
+                        System.out.println("Media de coste: " + calcularMedia(CostosES2));
+                        System.out.println("Desviación tipica de coste: "+ calcularDesviacion(CostosES2, calcularMedia(CostosES2)) );
+                        System.out.println("Media de evaluaciones: " + calcularMedia(EvaluacionesES2) );
+                        System.out.println("Desviación tipica de evaluaciones: " +calcularDesviacion(EvaluacionesES2, calcularMedia(EvaluacionesES2))+"\n");
+                        
+                        System.out.println("tai150b");
                         for (int i = 0; i < 5; i++) {
                             System.out.println(Arrays.toString(SolucionesES3[i]));
                             System.out.println("Costo " + (i + 1) + " = " + CostosES3[i]);
                             System.out.println("Evaluaciones " + (i + 1) + " = " + EvaluacionesES3[i]);
                         }
+                        System.out.println("El mejor coste es: "+ Arrays.stream(CostosES3).min().getAsInt());
+                        System.out.println("El peor coste es: "+ Arrays.stream(CostosES3).max().getAsInt());
+                        System.out.println("Media de coste: " + calcularMedia(CostosES3));
+                        System.out.println("Desviación tipica de coste: "+ calcularDesviacion(CostosES3, calcularMedia(CostosES3)) );
+                        System.out.println("Media de evaluaciones: " + calcularMedia(EvaluacionesES3) );
+                        System.out.println("Desviación tipica de evaluaciones: " +calcularDesviacion(EvaluacionesES3, calcularMedia(EvaluacionesES3))+"\n");
 
                         break;
                     case 6:
@@ -344,22 +462,46 @@ public class MBHBPractica1 {
                              EvaluacionesBT3[i]=bt3.devolverEvaluaciones();
 
                         }
-                        System.out.println("Todas las soluciones:");
+                        System.out.println("Todas las soluciones:\n");
+                        System.out.println("tai25b");
                         for (int i = 0; i < 5; i++) {
                             System.out.println(Arrays.toString(SolucionesBT1[i]));
                             System.out.println("Costo " + (i + 1) + " = " + CostosBT1[i]);
                             System.out.println("Evaluaciones " + (i + 1) + " = " + EvaluacionesBT1[i]);
                         }
+                        System.out.println("El mejor coste es: "+ Arrays.stream(CostosBT1).min().getAsInt());
+                        System.out.println("El peor coste es: "+ Arrays.stream(CostosBT1).max().getAsInt());
+                        System.out.println("Media de coste: " + calcularMedia(CostosBT1));
+                        System.out.println("Desviación tipica de coste: "+ calcularDesviacion(CostosBT1, calcularMedia(CostosBT1)) );
+                        System.out.println("Media de evaluaciones: " + calcularMedia(EvaluacionesBT1) );
+                        System.out.println("Desviación tipica de evaluaciones: " +calcularDesviacion(EvaluacionesBT1, calcularMedia(EvaluacionesBT1))+"\n");
+                        
+                        System.out.println("sko90");
                         for (int i = 0; i < 5; i++) {
                             System.out.println(Arrays.toString(SolucionesBT2[i]));
                             System.out.println("Costo " + (i + 1) + " = " + CostosBT2[i]);
                             System.out.println("Evaluaciones " + (i + 1) + " = " + EvaluacionesBT2[i]);
                         }
+                        System.out.println("El mejor coste es: "+ Arrays.stream(CostosBT2).min().getAsInt());
+                        System.out.println("El peor coste es: "+ Arrays.stream(CostosBT2).max().getAsInt());
+                        System.out.println("Media de coste: " + calcularMedia(CostosBT2));
+                        System.out.println("Desviación tipica de coste: "+ calcularDesviacion(CostosBT2, calcularMedia(CostosBT2)) );
+                        System.out.println("Media de evaluaciones: " + calcularMedia(EvaluacionesBT2) );
+                        System.out.println("Desviación tipica de evaluaciones: " +calcularDesviacion(EvaluacionesBT2, calcularMedia(EvaluacionesBT2))+"\n");
+                        
+                        System.out.println("tai150b");
                         for (int i = 0; i < 5; i++) {
                             System.out.println(Arrays.toString(SolucionesBT3[i]));
                             System.out.println("Costo " + (i + 1) + " = " + CostosBT3[i]);
                             System.out.println("Evaluaciones " + (i + 1) + " = " + EvaluacionesBT3[i]);
                         }
+                        System.out.println("El mejor coste es: "+ Arrays.stream(CostosBT3).min().getAsInt());
+                        System.out.println("El peor coste es: "+ Arrays.stream(CostosBT3).max().getAsInt());                        
+                        System.out.println("Media de coste: " + calcularMedia(CostosBT3));
+                        System.out.println("Desviación tipica de coste: "+ calcularDesviacion(CostosBT3, calcularMedia(CostosBT3)) );
+                        System.out.println("Media de evaluaciones: " + calcularMedia(EvaluacionesBT3) );
+                        System.out.println("Desviación tipica de evaluaciones: " +calcularDesviacion(EvaluacionesBT3, calcularMedia(EvaluacionesBT3))+"\n");
+                        
                         break;
                     case 7:
                         System.out.println("Saliendo del programa...");
@@ -377,10 +519,21 @@ public class MBHBPractica1 {
         lectorOpcion.close();
     }
 
-    private static void pintarMatriz(int[][] matrix) {
-        for (int[] row : matrix) {
-            System.out.println(Arrays.toString(row));
+    
+    public static double calcularMedia(int[] datos) {
+        double suma = 0.0;
+        for (int num : datos) {
+            suma += num;
         }
+        return suma / datos.length;
+    }
+
+    public static double calcularDesviacion(int[] datos, double media) {
+        double sumaCuadrados = 0.0;
+        for (int num : datos) {
+            sumaCuadrados += Math.pow(num - media, 2);
+        }
+        return Math.sqrt(sumaCuadrados / datos.length); 
     }
 
 }

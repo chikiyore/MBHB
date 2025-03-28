@@ -23,6 +23,8 @@ public class BusquedaTabu {
     private ElementoTabu[] listaTabu;
     private int indiceListaTabu;
     private int evaluaciones;
+    private int numtabus;
+    private int numAspiraciones;
 
     public BusquedaTabu(int[][] D, int[][] F, int n, long seed) {
         this.F = F;
@@ -38,6 +40,8 @@ public class BusquedaTabu {
         this.listaTabu = new ElementoTabu[tamanoListaTabu];
         this.indiceListaTabu = 0;
         this.evaluaciones=0;
+        this.numtabus=0;
+        this.numAspiraciones=0;
     }
 
     public int[] resolverBusquedaTabu() {
@@ -56,7 +60,9 @@ public class BusquedaTabu {
                 int i = par[0], j = par[1];
                 int[] vecino = generarVecino(solucionActual, i, j);
                 int nuevoCosto = costoActual + calcularDiferenciaCosto(solucionActual, i, j);
-
+                if(nuevoCosto< mejorCosto){
+                numAspiraciones++;
+                }
                 if (!esTabu(new ElementoTabu(solucionActual[i], solucionActual[j], j, i, 0)) || nuevoCosto < mejorCosto) {
                     if (nuevoCosto < mejorCostoVecino) {
                         mejorVecino = vecino.clone();
@@ -89,6 +95,8 @@ public class BusquedaTabu {
 
             iteracion++;
         }
+        //System.out.println("NUMERO DE ACEPTACIONES DE ASPIRACION "+ numAspiraciones);
+        //System.out.println("NUMERO DE TABUS ENCONTRADAS "+ numtabus+"\n");
         return mejorSolucion;
     }
 private void eliminarMovimientosTabuExpirados(int iteracionLimite) {
@@ -127,6 +135,7 @@ private void eliminarMovimientosTabuExpirados(int iteracionLimite) {
     private boolean esTabu(ElementoTabu elemento) {
         for (ElementoTabu e : listaTabu) {
             if (e != null && e.equals(elemento)) {
+                numtabus++;
                 return true;
             }
         }
