@@ -54,13 +54,13 @@ public class BusquedaLocalPrimerMejor {
                 if (costoVecino < mejorCostoVecino) {
                     mejorVecino = vecino.clone();
                     mejorCostoVecino = costoVecino;
-                    mejora = true; // Se detiene naturalmente en la siguiente iteración
+                    mejora = true; // Si mejora salimos del buvle
                     break;
                 }
                 it++;
             }
 
-            // Si encontramos una mejora, actualizamos la solución
+            // Si encontramos una mejora, actualizamos la solucion
             if (mejora) {
                 mejorSolucion = mejorVecino.clone();
                 mejorCosto = mejorCostoVecino;

@@ -95,8 +95,8 @@ public class BusquedaTabu {
 
             iteracion++;
         }
-        //System.out.println("NUMERO DE ACEPTACIONES DE ASPIRACION "+ numAspiraciones);
-        //System.out.println("NUMERO DE TABUS ENCONTRADAS "+ numtabus+"\n");
+       // System.out.println("NUMERO DE ACEPTACIONES DE ASPIRACION "+ numAspiraciones);
+       // System.out.println("NUMERO DE TABUS ENCONTRADAS "+ numtabus+"\n");
         return mejorSolucion;
     }
 private void eliminarMovimientosTabuExpirados(int iteracionLimite) {
@@ -109,7 +109,7 @@ private void eliminarMovimientosTabuExpirados(int iteracionLimite) {
             for (int j = i; j < listaTabu.length - 1; j++) {
                 listaTabu[j] = listaTabu[j + 1];
             }
-            listaTabu[listaTabu.length - 1] = null; // Colocar null al final del array
+            listaTabu[listaTabu.length - 1] = null; // Colocamos null al final del array
             count++;
             i--; // Ajustar el índice después de la eliminación
         }
@@ -236,7 +236,7 @@ private void eliminarMovimientosTabuExpirados(int iteracionLimite) {
 
         public int i, j, valori, valorj, iteracionexpiracion;
 
-        // constructor
+        
         public ElementoTabu(int i, int j, int valori, int valorj, int iteracionexpiracion) {
             this.i = i;
             this.j = j;
@@ -262,7 +262,7 @@ private void eliminarMovimientosTabuExpirados(int iteracionLimite) {
 
         @Override
         public int hashCode() {
-            // Usar un código hash que no dependa del orden de i y j
+            
             return Objects.hash(Math.min(i, j), Math.max(i, j), Math.min(valori, valorj), Math.max(valori, valorj));
         }
 

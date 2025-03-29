@@ -33,13 +33,14 @@ public class EnfriamientoSimulado {
         this.random = new Random(seed);
         this.mejorSolucion = generarSolucionAleatoria();
         this.mejorCosto = calcularCosto(mejorSolucion);
-        this.TIni=(0.3/(-Math.log(0.3))*mejorCosto);
+        this.TIni=(0.3 / -Math.log(0.3)) * mejorCosto;
         this.evaluaciones=0;
     }
 
     public int[] resolverEnfriamientoSimulado() {
        int iteraciones = 50 * n;
-        
+       
+
        double T = TIni;
         int[] solucionActual = mejorSolucion.clone();
         int costoActual = mejorCosto;
@@ -52,7 +53,7 @@ public class EnfriamientoSimulado {
                 int delta = costoVecino - costoActual;
                 
                 if (delta < 0 || random.nextDouble() < Math.exp(-delta / T)) {
-                    solucionActual = vecino;
+                    solucionActual = vecino.clone();
                     costoActual = costoVecino;
                     aceptados++;
                     if (costoActual < mejorCosto) {
@@ -63,6 +64,7 @@ public class EnfriamientoSimulado {
                 
             }
             T = TIni / (1 + k); // Miguel dijo k=1 inicialmente
+            //System.out.println("Iteración " + k + " - TEMPERATURA = " + T);
         }
         return mejorSolucion;
     }
