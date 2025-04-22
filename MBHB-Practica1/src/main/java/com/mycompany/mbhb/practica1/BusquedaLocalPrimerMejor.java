@@ -45,7 +45,7 @@ public class BusquedaLocalPrimerMejor {
             int mejorCostoVecino = mejorCosto;
             List<int[]> candidatos = generarListaVecinos();
 
-            // Exploramos aleatoriamente
+            
             while (it < candidatos.size() && !mejora) {
                 int i = candidatos.get(it)[0], j = candidatos.get(it)[1];
                 int[] vecino = generarVecino(mejorSolucion, i, j);

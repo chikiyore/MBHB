@@ -21,9 +21,7 @@ public class MBHBPractica1 {
         Scanner lectorOpcion = new Scanner(System.in);
 
         
-        // Preguntar el nombre del fichero
-        //System.out.print("Ingrese el nombre del fichero (ejemplo: prueba.dat): ");
-        //String filePath = lectorOpcion.nextLine();
+        
         try {
             Scanner scanner1 = new Scanner(new File("tai25b.dat"));
             Scanner scanner2 = new Scanner(new File("sko90.dat"));
@@ -90,12 +88,7 @@ public class MBHBPractica1 {
             scanner2.close();
             scanner3.close();
 
-            // Mostrar los datos leídos (opcional)
-            // System.out.println("Tamaño del problema: " + n);
-            // System.out.println("Matriz D:");
-            // pintarMatriz(D);
-            //  System.out.println("Matriz F:");
-            //  pintarMatriz(F);
+            
             int opcion;
             do {
                 // Menú interactivo

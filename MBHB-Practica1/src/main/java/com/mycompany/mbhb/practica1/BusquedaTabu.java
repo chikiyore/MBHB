@@ -95,8 +95,8 @@ public class BusquedaTabu {
 
             iteracion++;
         }
-       // System.out.println("NUMERO DE ACEPTACIONES DE ASPIRACION "+ numAspiraciones);
-       // System.out.println("NUMERO DE TABUS ENCONTRADAS "+ numtabus+"\n");
+       //System.out.println("NUMERO DE ACEPTACIONES DE ASPIRACION "+ numAspiraciones);
+      // System.out.println("NUMERO DE TABUS ENCONTRADAS "+ numtabus+"\n");
         return mejorSolucion;
     }
 private void eliminarMovimientosTabuExpirados(int iteracionLimite) {
@@ -109,7 +109,7 @@ private void eliminarMovimientosTabuExpirados(int iteracionLimite) {
             for (int j = i; j < listaTabu.length - 1; j++) {
                 listaTabu[j] = listaTabu[j + 1];
             }
-            listaTabu[listaTabu.length - 1] = null; // Colocamos null al final del array
+            listaTabu[listaTabu.length - 1] = null; 
             count++;
             i--; // Ajustar el índice después de la eliminación
         }

@@ -21,7 +21,7 @@ public class Greedy {
     
 
     public Greedy(int[][] D, int[][] F, int n) {
-        //readFile(filePath);
+       
         this.F = F;
         this.D = D;
         this.n = n;
