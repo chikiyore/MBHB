@@ -594,49 +594,74 @@ public class MBHBPractica2 {
                         break;
                     case 9:
                         System.out.println("Algoritmo VNS");
-                        int[] SolucionesVNS1 = new int[n1];
-                        int CostosVNS1;
-                        int EvaluacionesVNS1;
-                        int[] SolucionesVNS2 = new int[n2];
-                        int CostosVNS2;
-                        int EvaluacionesVNS2;
-                        int[] SolucionesVNS3 = new int[n3];
-                        int CostosVNS3;
-                        int EvaluacionesVNS3;
+                        int[][] SolucionesVNS1 = new int[5][n1];
+                        int[] CostosVNS1 = new int[5];
+                        int[] EvaluacionesVNS1 = new int[5];
+                        int[][] SolucionesVNS2 = new int[5][n2];
+                        int[] CostosVNS2 = new int[5];
+                        int[] EvaluacionesVNS2 = new int[5];
+                        int[][] SolucionesVNS3 = new int[5][n3];
+                        int[] CostosVNS3 = new int[5];
+                        int[] EvaluacionesVNS3 = new int[5];
 
-                        
-                            VNS vns1 = new VNS(D1, F1, n1, Semillas[0]);
-                            SolucionesVNS1 = vns1.ejecutarVNS();
-                            CostosVNS1 = vns1.getMejorCosto();
-                            EvaluacionesVNS1=vns1.getEvaluacionesTotales();
+                        for (int i = 0; i < 5; i++) {
+                            VNS vns1 = new VNS(D1, F1, n1, Semillas[i]);
+                            SolucionesVNS1[i] = vns1.ejecutarVNS();
+                            CostosVNS1[i] = vns1.getMejorCosto();
+                            EvaluacionesVNS1[i]=vns1.getEvaluacionesTotales();
                             
-                            VNS vns2 = new VNS(D2, F2, n2, Semillas[0]);
-                            SolucionesVNS2 = vns2.ejecutarVNS();
-                            CostosVNS2 = vns2.getMejorCosto();
-                            EvaluacionesVNS2=vns2.getEvaluacionesTotales();
+                            VNS vns2 = new VNS(D2, F2, n2, Semillas[i]);
+                            SolucionesVNS2[i] = vns2.ejecutarVNS();
+                            CostosVNS2[i] = vns2.getMejorCosto();
+                            EvaluacionesVNS2[i]=vns2.getEvaluacionesTotales();
                             
-                            VNS vns3 = new VNS(D3, F3, n3, Semillas[0]);
-                            SolucionesVNS3 = vns3.ejecutarVNS();
-                            CostosVNS3 = vns3.getMejorCosto();
-                            EvaluacionesVNS3=vns3.getEvaluacionesTotales();
-
+                            VNS vns3 = new VNS(D3, F3, n3, Semillas[i]);
+                            SolucionesVNS3[i] = vns3.ejecutarVNS();
+                            CostosVNS3[i] = vns3.getMejorCosto();
+                            EvaluacionesVNS3[i]=vns3.getEvaluacionesTotales();
+                        }
                         
                         System.out.println("Todas las soluciones:\n");
                         System.out.println("tai25b");
+                         for (int i = 0; i < 5; i++) {
+                            System.out.println(Arrays.toString(SolucionesVNS1[i]));
+                            System.out.println("Costo " + (i+1) + " = " + CostosVNS1[i]);
+                            System.out.println("Evaluaciones " + (i+1) + " = " + EvaluacionesVNS1[i]);
+                         }
+                          System.out.println("El mejor coste es: "+ Arrays.stream(CostosVNS1).min().getAsInt());
+                        System.out.println("El peor coste es: "+ Arrays.stream(CostosVNS1).max().getAsInt());
+                        System.out.println("Media de coste: " + calcularMedia(CostosVNS1));
+                        System.out.println("Desviación tipica de coste: "+ calcularDesviacion(CostosVNS1, calcularMedia(CostosVNS1)) );
+                        System.out.println("Media de evaluaciones: " + calcularMedia(EvaluacionesVNS1) );
+                        System.out.println("Desviación tipica de evaluaciones: " +calcularDesviacion(EvaluacionesVNS1, calcularMedia(EvaluacionesVNS1))+"\n");
                         
-                            System.out.println(Arrays.toString(SolucionesVNS1));
-                            System.out.println("Costo " + 1 + " = " + CostosVNS1);
-                            System.out.println("Evaluaciones " + 1 + " = " + EvaluacionesVNS1);
-                        
+                         for (int i = 0; i < 5; i++) {
                         System.out.println("sko90");
-                        System.out.println(Arrays.toString(SolucionesVNS2));
-                            System.out.println("Costo " + 1 + " = " + CostosVNS2);
-                            System.out.println("Evaluaciones " + 1 + " = " + EvaluacionesVNS2);
-                         
+                        System.out.println(Arrays.toString(SolucionesVNS2[i]));
+                            System.out.println("Costo " + (i+1) + " = " + CostosVNS2[i]);
+                            System.out.println("Evaluaciones " + (i+1) + " = " + EvaluacionesVNS2[i]);
+                         }
+                          System.out.println("El mejor coste es: "+ Arrays.stream(CostosVNS2).min().getAsInt());
+                        System.out.println("El peor coste es: "+ Arrays.stream(CostosVNS2).max().getAsInt());
+                        System.out.println("Media de coste: " + calcularMedia(CostosVNS2));
+                        System.out.println("Desviación tipica de coste: "+ calcularDesviacion(CostosVNS2, calcularMedia(CostosVNS2)) );
+                        System.out.println("Media de evaluaciones: " + calcularMedia(EvaluacionesVNS2) );
+                        System.out.println("Desviación tipica de evaluaciones: " +calcularDesviacion(EvaluacionesVNS2, calcularMedia(EvaluacionesVNS2))+"\n");
+                        
+                          for (int i = 0; i < 5; i++) {
                         System.out.println("tai150b");
-                        System.out.println(Arrays.toString(SolucionesVNS3));
-                            System.out.println("Costo " + 1 + " = " + CostosVNS3);
-                            System.out.println("Evaluaciones " + 1 + " = " + EvaluacionesVNS3);
+                        System.out.println(Arrays.toString(SolucionesVNS3[i]));
+                            System.out.println("Costo " + (i+1) + " = " + CostosVNS3[i]);
+                            System.out.println("Evaluaciones " + (i+1) + " = " + EvaluacionesVNS3[i]);
+                          }
+                           System.out.println("El mejor coste es: "+ Arrays.stream(CostosVNS3).min().getAsInt());
+                        System.out.println("El peor coste es: "+ Arrays.stream(CostosVNS3).max().getAsInt());
+                        System.out.println("Media de coste: " + calcularMedia(CostosVNS3));
+                        System.out.println("Desviación tipica de coste: "+ calcularDesviacion(CostosVNS3, calcularMedia(CostosVNS3)) );
+                        System.out.println("Media de evaluaciones: " + calcularMedia(EvaluacionesVNS3) );
+                        System.out.println("Desviación tipica de evaluaciones: " +calcularDesviacion(EvaluacionesVNS3, calcularMedia(EvaluacionesVNS3))+"\n");
+                        
+               
                         break;
                     case 10:
                         System.out.println("Saliendo del programa...");
