@@ -24,6 +24,7 @@ public class CHC {
     private List<Integer> historialMejoresCostesGeneracional = new ArrayList<>();
     private List<Integer> historialPeoresCostes = new ArrayList<>();
     private List<Integer> historialMejoresCostesGlobal = new ArrayList<>();
+    private List<Double> historialDistanciasMedias = new ArrayList<>();
 
     public CHC(int[][] D, int[][] F, int n, long seed) {
         this.D = D;
@@ -38,11 +39,12 @@ public class CHC {
         mejorSolucion = null;
         int d = n / 4;
         int generacionesSinMejora = 0;
+        int reinicios=0;
 
-        for (int gen = 0; gen < MAX_GEN; gen++) {
+        while(reinicios < 10) {
             List<int[]> nuevosIndividuos = new ArrayList<>();
 
-            // Comparar parejas
+            // Comparo parejas
             for (int i = 0; i < TAMANO_POBLACION; i++) {
                 for (int j = i + 1; j < TAMANO_POBLACION; j++) {
                     int[] padre1 = poblacion.get(i);
@@ -58,7 +60,7 @@ public class CHC {
                 }
             }
 
-            // Evaluar nuevos y seleccionar TAMANO_POBLACION mejores
+            // Evaluo nuevos y selecciono TAMANO_POBLACION mejores
             List<int[]> union = new ArrayList<>(poblacion);
             union.addAll(nuevosIndividuos);
 
@@ -82,15 +84,28 @@ public class CHC {
                 mejorSolucion = mejorActual.clone();
             }
 
+            historialMejoresCostesGeneracional.add(costoActual);
+            historialMejoresCostesGlobal.add(mejorCosto);
+            historialPeoresCostes.add(peorCostoActual);
+
+            double sumDist = 0;
+            int pairs = 0;
+            for (int i = 0; i < TAMANO_POBLACION; i++) {
+                for (int j = i + 1; j < TAMANO_POBLACION; j++) {
+                    sumDist += distanciaHamming(poblacion.get(i), poblacion.get(j));
+                    pairs++;
+                }
+            }
+            double mediaDist = (pairs > 0 ? sumDist / pairs : 0);
+            historialDistanciasMedias.add(mediaDist);
             // Reinicio si d llega a 0
             if (d <= 0) {
                 reiniciarPoblacion(mejorSolucion, poblacion);
                 d = n / 4;
                 generacionesSinMejora = 0;
+                reinicios++;
             }
-            historialMejoresCostesGeneracional.add(costoActual);
-            historialMejoresCostesGlobal.add(mejorCosto);
-            historialPeoresCostes.add(peorCostoActual);
+
         }
 
         return mejorSolucion;
@@ -219,5 +234,8 @@ public class CHC {
 
     public List<Integer> getHistorialPeoresCostes() {
         return historialPeoresCostes;
+    }
+    public List<Double> getHistorialDistanciasMedias(){
+        return historialDistanciasMedias;
     }
 }

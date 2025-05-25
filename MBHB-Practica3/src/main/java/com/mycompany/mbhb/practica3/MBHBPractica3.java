@@ -746,15 +746,16 @@ public class MBHBPractica3 {
                             SolucionesGB2[i] = gb2.ejecutarAG();
                             CostosGB2[i] = gb2.getMejorCosto();
                             EvaluacionesGB2[i] = gb2.getEvaluacionesTotales();
-                            
+
                             GeneticoBasico gb3 = new GeneticoBasico(D3, F3, n3, Semillas[i]);
                             SolucionesGB3[i] = gb3.ejecutarAG();
                             CostosGB3[i] = gb3.getMejorCosto();
                             EvaluacionesGB3[i] = gb3.getEvaluacionesTotales();
 
-                            Graficador.graficar(gb1.getHistorialMejoresCostes(), "Genetico Basico tai25b semilla " + (i + 1));
-                            Graficador.graficar(gb2.getHistorialMejoresCostes(), "Genetico Basico sko90 semilla" + (i + 1));
-                            Graficador.graficar(gb3.getHistorialMejoresCostes(), "Genetico Basico tai150b semilla" + (i + 1));
+                           Graficador.graficarTresLineas(gb1.getHistorialMejoresCostes(), "Mejor Global", gb1.getHistorialMejoresCostesGeneracional(), "Mejor Generacion", gb1.getHistorialPeoresCostes(), "Peor Generacion ", "Genetico Basico tai25b semilla " + (i + 1));
+                            Graficador.graficarTresLineas(gb2.getHistorialMejoresCostes(), "Mejor Global", gb2.getHistorialMejoresCostesGeneracional(), "Mejor Generacion", gb2.getHistorialPeoresCostes(), "Peor Generacion ", "Genetico Basico sko90 semilla " + (i + 1));
+                            Graficador.graficarTresLineas(gb3.getHistorialMejoresCostes(), "Mejor Global", gb3.getHistorialMejoresCostesGeneracional(), "Mejor Generacion", gb3.getHistorialPeoresCostes(), "Peor Generacion ", "Genetico Basico tai150b semilla " + (i + 1));
+                            
                         }
 
                         System.out.println("Todas las soluciones:\n");
@@ -819,7 +820,6 @@ public class MBHBPractica3 {
                         listaErroresGB.add(errorgb3);
 
                         //Graficador.graficar(listaErroresGB, "Error relativo por tamano");
-
                         System.out.println("Coeficiente de variacion:\n");
                         System.out.println("tai25b");
 
@@ -839,12 +839,11 @@ public class MBHBPractica3 {
                         listaCVGB.add(cvgb2);
                         listaCVGB.add(cvgb3);
 
-                       // Graficador.graficar(listaCVGB, "Coeficiente de variacion por tamano");
-
+                        // Graficador.graficar(listaCVGB, "Coeficiente de variacion por tamano");
                         break;
 
                     case 11:
-                         System.out.println("Algoritmo CHC");
+                        System.out.println("Algoritmo CHC");
                         int[][] SolucionesCHC1 = new int[5][n1];
                         int[] CostosCHC1 = new int[5];
                         int[] EvaluacionesCHC1 = new int[5];
@@ -865,15 +864,18 @@ public class MBHBPractica3 {
                             SolucionesCHC2[i] = chc2.ejecutarCHC();
                             CostosCHC2[i] = chc2.getMejorCosto();
                             EvaluacionesCHC2[i] = chc2.getEvaluacionesTotales();
-                            
+
                             CHC chc3 = new CHC(D3, F3, n3, Semillas[i]);
                             SolucionesCHC3[i] = chc3.ejecutarCHC();
                             CostosCHC3[i] = chc3.getMejorCosto();
                             EvaluacionesCHC3[i] = chc3.getEvaluacionesTotales();
 
-                            Graficador.graficar(chc1.getHistorialPeoresCostes(), "CHC tai25b semilla " + (i + 1));
-                            Graficador.graficar(chc2.getHistorialPeoresCostes(), "CHC sko90 semilla" + (i + 1));
-                            Graficador.graficar(chc3.getHistorialPeoresCostes(), "CHC tai150b semilla" + (i + 1));
+                            Graficador.graficarTresLineas(chc1.getHistorialMejoresCostesGlobal(), "Mejor Global", chc1.getHistorialMejoresCostesGeneracional(), "Mejor Generacion", chc1.getHistorialPeoresCostes(), "Peor Generacion ", "CHC tai25b semilla " + (i + 1));
+                            Graficador.graficar(chc1.getHistorialDistanciasMedias(), "Distancia media tai25 semilla "+ (i + 1));
+                            Graficador.graficarTresLineas(chc2.getHistorialMejoresCostesGlobal(), "Mejor Global", chc2.getHistorialMejoresCostesGeneracional(), "Mejor Generacion", chc2.getHistorialPeoresCostes(), "Peor Generacion ", "CHC sko90 semilla " + (i + 1));
+                           Graficador.graficar(chc2.getHistorialDistanciasMedias(), "Distancia media sko90 semilla "+ (i + 1));
+                            Graficador.graficarTresLineas(chc3.getHistorialMejoresCostesGlobal(), "Mejor Global", chc3.getHistorialMejoresCostesGeneracional(), "Mejor Generacion", chc3.getHistorialPeoresCostes(), "Peor Generacion ", "CHC tai150b semilla " + (i + 1));
+                            Graficador.graficar(chc3.getHistorialDistanciasMedias(), "Distancia media tai150b semilla "+ (i + 1));
                         }
 
                         System.out.println("Todas las soluciones:\n");
@@ -938,7 +940,6 @@ public class MBHBPractica3 {
                         listaErroresCHC.add(errorchc3);
 
                         //Graficador.graficar(listaErroresGB, "Error relativo por tamano");
-
                         System.out.println("Coeficiente de variacion:\n");
                         System.out.println("tai25b");
 
@@ -958,36 +959,126 @@ public class MBHBPractica3 {
                         listaCVCHC.add(cvchc2);
                         listaCVCHC.add(cvchc3);
 
-                       // Graficador.graficar(listaCVGB, "Coeficiente de variacion por tamano");
+                        // Graficador.graficar(listaCVGB, "Coeficiente de variacion por tamano");
                         break;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     case 12:
-                        System.out.println("Saliendo del programa...");
+                        System.out.println("Algoritmo Multimodal");
+                        int[][] SolucionesM1 = new int[5][n1];
+                        int[] CostosM1 = new int[5];
+                        int[] EvaluacionesM1 = new int[5];
+                        int[][] SolucionesM2 = new int[5][n2];
+                        int[] CostosM2 = new int[5];
+                        int[] EvaluacionesM2 = new int[5];
+                        int[][] SolucionesM3 = new int[5][n3];
+                        int[] CostosM3 = new int[5];
+                        int[] EvaluacionesM3 = new int[5];
+
+                        for (int i = 0; i < 5; i++) {
+                            Multimodal m1 = new Multimodal(D1, F1, n1, Semillas[i]);
+                            SolucionesM1[i] = m1.ejecutarMultimodal();
+                            CostosM1[i] = m1.getMejorCosto();
+                            EvaluacionesM1[i] = m1.getEvaluacionesTotales();
+
+                            Multimodal m2 = new Multimodal(D2, F2, n2, Semillas[i]);
+                            SolucionesM2[i] = m2.ejecutarMultimodal();
+                            CostosM2[i] = m2.getMejorCosto();
+                            EvaluacionesM2[i] = m2.getEvaluacionesTotales();
+
+                            Multimodal m3 = new Multimodal(D3, F3, n3, Semillas[i]);
+                            SolucionesM3[i] = m3.ejecutarMultimodal();
+                            CostosM3[i] = m3.getMejorCosto();
+                            EvaluacionesM3[i] = m3.getEvaluacionesTotales();
+
+                            Graficador.graficarTresLineas(m1.getHistorialGlobal(), "Mejor Global", m1.getHistorialMejorGen(), "Mejor Generacion", m1.getHistorialPeorGen(), "Peor Generacion ", "Multimodal tai25b semilla " + (i + 1));
+                            Graficador.graficarTresLineas(m2.getHistorialGlobal(), "Mejor Global", m2.getHistorialMejorGen(), "Mejor Generacion", m2.getHistorialPeorGen(), "Peor Generacion ", "Multimodal sko90 semilla " + (i + 1));
+                            Graficador.graficarTresLineas(m3.getHistorialGlobal(), "Mejor Global", m3.getHistorialMejorGen(), "Mejor Generacion", m3.getHistorialPeorGen(), "Peor Generacion ", "Multimodal tai150b semilla " + (i + 1));
+                            
+                        }
+
+                        System.out.println("Todas las soluciones:\n");
+                        System.out.println("tai25b");
+                        for (int i = 0; i < 5; i++) {
+                            System.out.println(Arrays.toString(SolucionesM1[i]));
+                            System.out.println("Costo " + (i + 1) + " = " + CostosM1[i]);
+                            System.out.println("Evaluaciones " + (i + 1) + " = " + EvaluacionesM1[i]);
+                        }
+                        System.out.println("El mejor coste es: " + Arrays.stream(CostosM1).min().getAsInt());
+                        System.out.println("El peor coste es: " + Arrays.stream(CostosM1).max().getAsInt());
+                        System.out.println("Media de coste: " + calcularMedia(CostosM1));
+                        System.out.println("Desviación tipica de coste: " + calcularDesviacion(CostosM1, calcularMedia(CostosM1)));
+                        System.out.println("Media de evaluaciones: " + calcularMedia(EvaluacionesM1));
+                        System.out.println("Desviación tipica de evaluaciones: " + calcularDesviacion(EvaluacionesM1, calcularMedia(EvaluacionesM1)) + "\n");
+
+                        for (int i = 0; i < 5; i++) {
+                            System.out.println("sko90");
+                            System.out.println(Arrays.toString(SolucionesM2[i]));
+                            System.out.println("Costo " + (i + 1) + " = " + CostosM2[i]);
+                            System.out.println("Evaluaciones " + (i + 1) + " = " + EvaluacionesM2[i]);
+                        }
+                        System.out.println("El mejor coste es: " + Arrays.stream(CostosM2).min().getAsInt());
+                        System.out.println("El peor coste es: " + Arrays.stream(CostosM2).max().getAsInt());
+                        System.out.println("Media de coste: " + calcularMedia(CostosM2));
+                        System.out.println("Desviación tipica de coste: " + calcularDesviacion(CostosM2, calcularMedia(CostosM2)));
+                        System.out.println("Media de evaluaciones: " + calcularMedia(EvaluacionesM2));
+                        System.out.println("Desviación tipica de evaluaciones: " + calcularDesviacion(EvaluacionesM2, calcularMedia(EvaluacionesM2)) + "\n");
+
+                        for (int i = 0; i < 5; i++) {
+                            System.out.println("tai150b");
+                            System.out.println(Arrays.toString(SolucionesM3[i]));
+                            System.out.println("Costo " + (i + 1) + " = " + CostosM3[i]);
+                            System.out.println("Evaluaciones " + (i + 1) + " = " + EvaluacionesM3[i]);
+                        }
+                        System.out.println("El mejor coste es: " + Arrays.stream(CostosM3).min().getAsInt());
+                        System.out.println("El peor coste es: " + Arrays.stream(CostosM3).max().getAsInt());
+                        System.out.println("Media de coste: " + calcularMedia(CostosM3));
+                        System.out.println("Desviación tipica de coste: " + calcularDesviacion(CostosM3, calcularMedia(CostosM3)));
+                        System.out.println("Media de evaluaciones: " + calcularMedia(EvaluacionesM3));
+                        System.out.println("Desviación tipica de evaluaciones: " + calcularDesviacion(EvaluacionesM3, calcularMedia(EvaluacionesM3)) + "\n");
+
+                        System.out.println("Error relativo:\n");
+                        System.out.println("tai25b");
+                        double mediam1 = calcularMedia(CostosM1);
+                        int mejorvalorm1 = Arrays.stream(CostosM1).min().getAsInt();
+                        double errorm1 = ((mediam1 - mejorvalorm1) / mejorvalorm1) * 100;
+                        System.out.println("El error relativo de Multimodal tai25b es " + errorm1);
+                        System.out.println("sko90");
+                        double mediam2 = calcularMedia(CostosM2);
+                        int mejorvalorm2 = Arrays.stream(CostosM2).min().getAsInt();
+                        double errorm2 = ((mediam2 - mejorvalorm2) / mejorvalorm2) * 100;
+                        System.out.println("El error relativo de Multimodal sko90 es " + errorm2);
+                        System.out.println("tai150b");
+                        double mediam3 = calcularMedia(CostosM3);
+                        int mejorvalorm3 = Arrays.stream(CostosM3).min().getAsInt();
+                        double errorm3 = ((mediam3 - mejorvalorm3) / mejorvalorm3) * 100;
+                        System.out.println("El error relativo de Multimodal tai150b es " + errorm3 + "\n");
+                        ArrayList<Double> listaErroresM = new ArrayList<>();
+                        listaErroresM.add(errorm1);
+                        listaErroresM.add(errorm2);
+                        listaErroresM.add(errorm3);
+
+                        //Graficador.graficar(listaErroresM, "Error relativo por tamano");
+                        System.out.println("Coeficiente de variacion:\n");
+                        System.out.println("tai25b");
+
+                        double desviacionm1 = calcularDesviacion(CostosM1, mediam1);
+                        double cvm1 = (desviacionm1 / mediam1) * 100;
+                        System.out.println("El coeficiente de variacion de Multimodal tai25b es " + cvm1);
+                        System.out.println("sko90");
+                        double desviacionm2 = calcularDesviacion(CostosM2, mediam2);
+                        double cvm2 = (desviacionm2 / mediam2) * 100;
+                        System.out.println("El coeficiente de variacion de Multimodal sko90 es " + cvm2);
+                        System.out.println("tai150b");
+                        double desviacionm3 = calcularDesviacion(CostosM3, mediam3);
+                        double cvm3 = (desviacionm3 / mediam3) * 100;
+                        System.out.println("El coeficiente de variacion de Multimodal tai150b es " + cvm3);
+                        ArrayList<Double> listaCVM = new ArrayList<>();
+                        listaCVM.add(cvm1);
+                        listaCVM.add(cvm2);
+                        listaCVM.add(cvm3);
+
+                        // Graficador.graficar(listaCVM, "Coeficiente de variacion por tamano");
                         break;
+
                     case 13:
                         System.out.println("Saliendo del programa...");
                         break;

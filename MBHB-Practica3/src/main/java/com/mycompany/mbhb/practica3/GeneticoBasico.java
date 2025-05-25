@@ -20,12 +20,15 @@ public class GeneticoBasico {
     private int[] mejorSolucion;
     private Random random;
     private final int TAMANO_POBLACION = 100;
-    private final int MAX_GEN = 1000;
+    private final int MAX_GEN = 500;
     private final double PROBABILIDAD_CRUCE = 0.9;
     private final double MUTACION = 0.05;
     private final double ELITISMO = 0.10;
     private final double TORNEO_PORCENTAJE = 0.10;
     private List<Integer> historialMejoresCostes = new ArrayList<>();
+    private List<Integer> historialMejoresCostesGeneracional = new ArrayList<>();
+    private List<Integer> historialPeoresCostes = new ArrayList<>();
+    
 
     public GeneticoBasico(int[][] D, int[][] F, int n, long seed) {
         this.F = F;
@@ -79,7 +82,20 @@ public class GeneticoBasico {
                     mejorSolucion = individuo.clone();
                     }
             }
+            poblacion.sort(Comparator.comparingInt(this::calcularCosto));
+             
+            int[] mejorActual = poblacion.get(0);
+            int[] peorActual = poblacion.get(poblacion.size() - 1);
+
+
+            int costeMejorGen = calcularCosto(mejorActual);
+            int costePeorGen = calcularCosto(peorActual);
+            
+            
             historialMejoresCostes.add(mejorCosto);
+            historialMejoresCostesGeneracional.add(costeMejorGen);
+            historialPeoresCostes.add(costePeorGen);
+            
         }
 
         return mejorSolucion;
@@ -204,5 +220,13 @@ public class GeneticoBasico {
     
     public List<Integer> getHistorialMejoresCostes() {
         return historialMejoresCostes;
+    }
+   
+    public List<Integer> getHistorialMejoresCostesGeneracional() {
+        return historialMejoresCostesGeneracional;
+    }
+
+    public List<Integer> getHistorialPeoresCostes() {
+        return historialPeoresCostes;
     }
 }

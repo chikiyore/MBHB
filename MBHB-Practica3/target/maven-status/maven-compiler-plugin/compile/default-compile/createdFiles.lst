@@ -4,6 +4,7 @@ com\mycompany\mbhb\practica3\BusquedaAleatoria.class
 com\mycompany\mbhb\practica3\BusquedaLocalMejor.class
 com\mycompany\mbhb\practica3\GRASP.class
 com\mycompany\mbhb\practica3\EnfriamientoSimulado.class
+com\mycompany\mbhb\practica3\Multimodal.class
 com\mycompany\mbhb\practica3\GeneticoBasico.class
 com\mycompany\mbhb\practica3\Greedy.class
 com\mycompany\mbhb\practica3\BusquedaLocalPrimerMejor.class
